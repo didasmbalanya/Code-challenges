@@ -8,32 +8,31 @@ function countingValleys(n, s) {
   let current = 0;
   let previous = 0;
   let counter = 0;
-
-  for( let letter of s){
-    console.log('letter>>>>', letter)
-    if (letter === 'U'){
-      current += 1
-      previous = current - 1
-    }
-    if (letter === 'D'){
-      current -= 1
-      previous = current + 1
-    }
-    if (previous > current) {
-      console.log('going down')
-      console.log('current', current)
-    }
-    if (current > previous){
-      console.log('going up')
-      console.log('current', current)
-    }
-    if (current === 0 && previous < 0){
-      counter += 1
-      console.log('back to surface counter is: ', counter)
-      console.log('current', current)
-    }
+  
+  for (letter of s){
+      if (letter === 'U'){
+          current += 1
+          previous = current - 1
+      }
+      if (letter === 'D'){
+          current -= 1;
+          previous = current + 1
+      }
+      if (current < 0 && previous > current){
+          console.log('going down')
+      }
+      
+      if (current > previous){
+          console.log('going up')
+      }
+      
+      if(current === 0 && previous < 0){
+          counter += 1
+          console.log('Back to surface, volley count: ', counter)
+      }
   }
-  return counter;
+  return counter
+
 }
 
-console.log(countingValleys(8, 'DDUUDDDDUUUUDDUU')) // returns 3
+console.log(countingValleys2(8, 'DDUUDDDDUUUUDDUU')) // returns 3
